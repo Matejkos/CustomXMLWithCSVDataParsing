@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿
+using System.Xml.Serialization;
 
 namespace XML_WithCSV_ParsingTest
 {
-    class CustomSerializationBase:Parser
+    [XmlRoot("Data")]
+    public class CustomSerialization:ParserBase
     {
         [CsvParsingAttribut(1)]
         public int Column1 { get;  set;}

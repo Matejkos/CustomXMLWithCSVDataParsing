@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Reflection;
 using System.ComponentModel;
+using System.Xml.Serialization;
+using System.Xml;
+using System.Xml.Schema;
 
 namespace XML_WithCSV_ParsingTest
 {
-    class Parser
+    public abstract class ParserBase : IXmlSerializable
     {
         Dictionary<int, PropertyContext> ColumnInformation = new Dictionary<int, PropertyContext>();
-        public Parser()
+        public ParserBase()
         {
             foreach (var prop in this.GetType().GetProperties())
             {
@@ -40,6 +40,21 @@ namespace XML_WithCSV_ParsingTest
                     row.Value.PropInfo.SetValue(this, TypeDescriptor.GetConverter(row.Value.TypeData).ConvertFromString(data[row.Key - 1]));
                 }
             }
+        }
+
+        public XmlSchema GetSchema()
+        {
+            return null;
+        }
+
+        public virtual void ReadXml(XmlReader reader)
+        {
+            this.Deserialize(reader.ReadElementContentAsString().Trim());
+        }
+
+        public virtual void WriteXml(XmlWriter writer)
+        {
+            throw new NotImplementedException();
         }
     }
 }

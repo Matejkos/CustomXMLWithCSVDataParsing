@@ -44,8 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CsvParsingAttribut.cs" />
-    <Compile Include="CustomSerializationBase.cs" />
-    <Compile Include="Parser.cs" />
+    <Compile Include="CustomSerialization.cs" />
+    <Compile Include="ParserBase.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyContext.cs" />
