@@ -19,6 +19,11 @@ namespace XML_WithCSV_ParsingTest
         {
             var xmlSerializer = new XmlSerializer(typeof(CustomSerialization));
             CustomSerialization data = (CustomSerialization)xmlSerializer.Deserialize(new StringReader(testData));
+            MemoryStream stream = new MemoryStream();
+            xmlSerializer.Serialize(stream, data);
+            stream.Seek(0, SeekOrigin.Begin);
+            StreamReader reader = new StreamReader(stream);
+            Console.WriteLine(reader.ReadToEnd());
             Console.ReadLine();
         }
     }

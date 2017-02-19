@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Xml.Serialization;
 using System.Xml;
 using System.Xml.Schema;
+using System.Text;
 
 namespace XML_WithCSV_ParsingTest
 {
@@ -54,7 +55,12 @@ namespace XML_WithCSV_ParsingTest
 
         public virtual void WriteXml(XmlWriter writer)
         {
-            throw new NotImplementedException();
+            StringBuilder builder = new StringBuilder();
+            for(int i = 0;i< ColumnInformation.Keys.Max();i++)
+            {
+                builder.Append(ColumnInformation[i + 1].PropInfo.GetValue(this)).Append(",");
+            }
+            writer.WriteString(builder.ToString());
         }
     }
 }
